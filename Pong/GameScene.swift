@@ -14,8 +14,11 @@ class GameScene: SKScene {
     var ball = SKSpriteNode()
     var enemy = SKSpriteNode()
     var main = SKSpriteNode()
-    
+    var mainScoreLabel = SKLabelNode()
+    var enemyScoreLabel = SKLabelNode()
     var score = [Int]()
+    
+    
     
     override func didMove(to view: SKView) {
         
@@ -24,6 +27,9 @@ class GameScene: SKScene {
         ball = self.childNode(withName: "ball") as! SKSpriteNode
         enemy = self.childNode(withName: "enemy") as! SKSpriteNode
         main = self.childNode(withName: "main") as! SKSpriteNode
+        mainScoreLabel = self.childNode(withName: "mainScoreLabel") as! SKLabelNode
+        enemyScoreLabel = self.childNode(withName: "enemyScoreLabel") as! SKLabelNode
+        
         ball.physicsBody?.applyImpulse(CGVector(dx: 20, dy: 20))
         
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -81,6 +87,8 @@ class GameScene: SKScene {
         else if ball.position.y >= enemy.position.y + 70{
             addScore(playerWhoWon: main)
         }
+        mainScoreLabel.text = String(score[0])
+        enemyScoreLabel.text = String(score[1])
         
         print(score)
     }
