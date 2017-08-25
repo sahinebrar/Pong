@@ -26,7 +26,11 @@ class GameScene: SKScene {
         
         ball = self.childNode(withName: "ball") as! SKSpriteNode
         enemy = self.childNode(withName: "enemy") as! SKSpriteNode
+        enemy.position.y = (self.frame.height/2) - 50
+        
         main = self.childNode(withName: "main") as! SKSpriteNode
+        main.position.y = (-self.frame.height/2) + 50
+        
         mainScoreLabel = self.childNode(withName: "mainScoreLabel") as! SKLabelNode
         enemyScoreLabel = self.childNode(withName: "enemyScoreLabel") as! SKLabelNode
         
@@ -81,10 +85,10 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         enemy.run(SKAction.moveTo(x: ball.position.x, duration: 0.5))
         
-        if ball.position.y <= main.position.y - 70{
+        if ball.position.y <= main.position.y - 30{
             addScore(playerWhoWon: enemy)
         }
-        else if ball.position.y >= enemy.position.y + 70{
+        else if ball.position.y >= enemy.position.y + 30{
             addScore(playerWhoWon: main)
         }
         mainScoreLabel.text = String(score[0])
