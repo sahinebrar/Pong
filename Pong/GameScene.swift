@@ -75,10 +75,10 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         enemy.run(SKAction.moveTo(x: ball.position.x, duration: 0.5))
         
-        if ball.position.y <= main.position.y{
+        if ball.position.y <= main.position.y - 70{
             addScore(playerWhoWon: enemy)
         }
-        else if ball.position.y >= enemy.position.y{
+        else if ball.position.y >= enemy.position.y + 70{
             addScore(playerWhoWon: main)
         }
         
